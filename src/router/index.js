@@ -7,8 +7,7 @@ const router = createRouter({
     {
       path: '/',
       component: () => import('@/views/login/LoginIndex.vue')
-    },
-    
+    }
   ]
 })
 
