@@ -16,18 +16,21 @@ const form = ref({
     password: '',
 })
 
+const userR =ref({})
+
 const { account,password } = form.value
 
 const login = () =>{
-    const res = loginAPI({ account,password })
-    console.log(res)
+    loginAPI({ account,password }).then(user => userR.value = user)
+   
 }
 
 </script>
 
 
 <template>
-    <div class="input">
+    <div class="login-box">
+        ddfdf : {{ userR.name }}
         <div>登录????</div>
         <div class="account">
             账号：<input type="text" v-model="form.account">
@@ -40,3 +43,9 @@ const login = () =>{
         </div>
     </div>
 </template>
+
+<style>
+    .login-box{
+        border-color: red;
+    }
+</style>
