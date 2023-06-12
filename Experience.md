@@ -8,3 +8,4 @@ urlBase设置为mock
 
 ///////////////////
 git push -u github master
+git push -u gitee "master"

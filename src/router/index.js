@@ -7,6 +7,16 @@ const router = createRouter({
     {
       path: '/',
       component: () => import('@/views/login/LoginIndex.vue')
+    },
+    {
+      path: '/student',
+      component: () => import('@/views/student/StudentIndex.vue'),
+      name: 'studentPage'
+    },
+    {
+      path: '/teacher',
+      component: () => import('@/views/teacher/TeacherIndex.vue'),
+      name: 'teacherPage'
     }
   ]
 })

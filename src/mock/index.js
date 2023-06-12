@@ -2,21 +2,31 @@
 
 
 import Mock from 'mockjs'
-import { ref } from 'vue'
-import userData from '@/mock/json/userData.json'
 
-// const userData = ref([
-//     {
-//         account: '1111',
-//         password: '1111',
-//         role: 'student'
-//     },
-//     {
-//         account: '2222',
-//         password: '2222',
-//         role: 'teacher'
-//     }
-// ])
+var userData = [
+    {
+        "account":'1111',
+        "password":'1111',
+        "role":"student"
+    },
+    {
+        "account":"2222",
+        "password":"2222",
+        "role":"teacher"
+    }
+]
+
+var _jsonData = [
+    { name: "小明", age: 16 },
+    { name: "小6", age: 16 },
+    { name: "小7", age: 16 },
+];
+// var queryData = _jsonData.filter(function (_data) {
+//     return _data.name == '小明'
+// })
+
+// console.log("queryData===");
+// console.log(queryData);
 
 
 Mock.mock('/mock/userListData',"get",function(){
@@ -34,8 +44,20 @@ Mock.mock('/mock/userListData',"get",function(){
 }
 )
 
-Mock.mock('/mock/login','post',function({ account,password }){
+Mock.mock('/mock/login','post',( options ) => {
     console.log('dfdfdfddfd');
-    //const obj = userData.value.find(item => item.account == account && item.password == password)
-    return {name: 'BO'}
+    // var queryData = _jsonData.filter(function (_data) {
+    //     return _data.name == '小明'
+    // })
+
+    //获取post请求中的参数，存在body中，后续调用
+    const body = JSON.parse(options.body)
+    console.log(body.account)
+
+    var user = userData.filter(function (_data) {
+        return _data.account == body.account
+    })
+    // return {name: 'BO'}
+    console.log(user)
+    return user
 })

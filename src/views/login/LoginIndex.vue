@@ -8,29 +8,50 @@
 // userListStore.getUserList()
 
 // console.log(userListStore.userlist)
-import { loginAPI } from '@/apis/user';
+
 import { ref,onMounted } from 'vue';
+import { useUserStore } from '@/stores/user';
+import {useRouter} from 'vue-router'
+
+const userStore = useUserStore()
 
 const form = ref({
     account: '',
     password: '',
 })
 
-const userR =ref({})
+const user =ref({})
 
-const { account,password } = form.value
+const router = useRouter()
 
-const login = () =>{
-    loginAPI({ account,password }).then(user => userR.value = user)
-   
+const login = async () =>{
+    // console.log(form.value)
+    const { account,password } = form.value
+    // console.log(account)
+    // const res = await loginAPI({ account,password })
+    // user.value = res[0]
+    // console.log(user.value)
+
+    await userStore.getUserInfo({ account,password })
+    // console.log(userStore.userInfo)
+    if(userStore.userInfo.role == 'student'){
+        router.replace({path: '/student'})
+    }
+    if(userStore.userInfo.role == 'teacher'){
+        router.replace({path: '/teacher'})
+    }
 }
+
+// onMounted(() => {
+//     login();
+// })
 
 </script>
 
 
 <template>
     <div class="login-box">
-        ddfdf : {{ userR.name }}
+        ddfdf : {{ userStore.userInfo.role }}
         <div>登录????</div>
         <div class="account">
             账号：<input type="text" v-model="form.account">
@@ -39,7 +60,7 @@ const login = () =>{
             密码：<input type="text" v-model="form.password">
         </div>
         <div class="login-button">
-            <button @click="login">登录!!!!</button>
+            <button @click="login" RouterLink="">登录!!!!</button>
         </div>
     </div>
 </template>
