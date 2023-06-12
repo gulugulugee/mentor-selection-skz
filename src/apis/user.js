@@ -10,14 +10,9 @@ import httpInstance from '@/utils/http'
 //     })
 // }
 
-export const loginAPI =  ({ account,password }) => {
+export const studentListAPI =  () => {
     return httpInstance({
-      url: '/login',
-          method: 'POST',
-          data: {
-              account,
-              password
-          }
+      url: '/studentList'
     })
   }
 
@@ -33,3 +28,9 @@ export const loginAPI =  ({ account,password }) => {
 //     console.log(resp);
 //     return resp
 // }
+
+export const teacherListAPI = () => {
+  return httpInstance({
+    url: '/teacherList'
+  })
+}

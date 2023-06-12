@@ -1,57 +1,37 @@
 <script setup>
-// import { useUserStore } from '@/stores/user'
-
-// console.log("LoginIndex")
-
-// const userListStore = useUserStore()
-
-// userListStore.getUserList()
-
-// console.log(userListStore.userlist)
-
 import { ref,onMounted } from 'vue';
 import { useUserStore } from '@/stores/user';
-import {useRouter} from 'vue-router'
+import { useRouter } from 'vue-router'
+// import { firstTimeLoad } from '@/App.vue'
 
 const userStore = useUserStore()
+
+const load = async () => {
+    await userStore.getStudentList()
+}
+
+onMounted(() => load())
 
 const form = ref({
     account: '',
     password: '',
 })
 
-const user =ref({})
 
-const router = useRouter()
-
-const login = async () =>{
-    // console.log(form.value)
+const login = () => {
     const { account,password } = form.value
-    // console.log(account)
-    // const res = await loginAPI({ account,password })
-    // user.value = res[0]
-    // console.log(user.value)
-
-    await userStore.getUserInfo({ account,password })
-    // console.log(userStore.userInfo)
-    if(userStore.userInfo.role == 'student'){
-        router.replace({path: '/student'})
-    }
-    if(userStore.userInfo.role == 'teacher'){
-        router.replace({path: '/teacher'})
-    }
+    userStore.userLogin({ account,password })
 }
 
-// onMounted(() => {
-//     login();
-// })
+
+
 
 </script>
 
 
 <template>
     <div class="login-box">
-        ddfdf : {{ userStore.userInfo.role }}
+        <!-- ddfdf : {{ userStore.userInfo.role }} -->
         <div>登录????</div>
         <div class="account">
             账号：<input type="text" v-model="form.account">
