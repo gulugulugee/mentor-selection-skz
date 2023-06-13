@@ -2,7 +2,8 @@
 import { ref,onMounted } from 'vue';
 import { useUserStore } from '@/stores/user';
 import { useRouter } from 'vue-router'
-// import { firstTimeLoad } from '@/App.vue'
+
+
 
 const userStore = useUserStore()
 
@@ -10,7 +11,7 @@ const load = async () => {
     await userStore.getStudentList()
 }
 
-onMounted(() => load())
+load()
 
 const form = ref({
     account: '',

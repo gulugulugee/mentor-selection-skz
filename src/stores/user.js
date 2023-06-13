@@ -17,26 +17,56 @@ export const useUserStore = defineStore('user',() => {
 
     // 获取学生数据
     const getStudentList = async () => {
-        console.log("getStudentList被调用")
-        const res = await studentListAPI()
-        studentList.value = res
+
+        // 判断是否是第一次执行
+        if ( JSON.parse(localStorage.getItem('student_flag'))){
+            console.log('判断为不是第一次')
+            return
+        }else{
+            console.log("getStudentList被调用")
+            const res = await studentListAPI()
+            studentList.value = res
+            localStorage.setItem('student_flag','notfirst')
+        }
+        
     }
 
     // 获取教师数据
     const getTeacherList = async () => {
-        console.log("getteacherlist被调用")
-        const result = await teacherListAPI()
-        teacherList.value = result
+        
+
+        // 判断是否是第一次执行
+        if ( JSON.parse(localStorage.getItem('teacher_flag'))){
+            console.log('判断为不是第一次')
+            return
+            
+        }else{
+            console.log("getteacherlist被调用")
+            const result = await teacherListAPI()
+            teacherList.value = result
+            localStorage.setItem('teacher_flag','notfirst')
+        }
+        
     }
 
     // 选择教师
     const chooseTeacher = ( teacherAccount,studentaccount) => {
+        //被选老师的pinia数据中的now+1
         teacherList.value.find(item => item.account = teacherAccount).now
         = teacherList.value.find(item => item.account = teacherAccount).now + 1;
 
+        // 选课学生在pinia中的state改为true
         studentList.value.find(item => item.account = studentaccount).state = true
+        // 选课学生记录选的哪个老师（存在teacher中
+        studentList.value.find(item => item.account = studentaccount).teacher = teacherAccount
 
+        // 更新pinia中当前学生信息
         studentInfo.value = studentList.value.find(item => item.account = studentaccount)
+
+        // // 选课后更新localstorage中的学生和教师信息
+        // localStorage.setItem('localStudentList',JSON.stringify(studentList.value))
+        // localStorage.setItem('localTeacherList',JSON.stringify(teacherList.value))
+        
     }
 
     // 用户登录
@@ -45,20 +75,23 @@ export const useUserStore = defineStore('user',() => {
         const nowStudentInfo = studentList.value.find(item => item.account = account && item.password == password)
         const nowTeacherInfo = teacherList.value.find(item => item.account = account && item.password == password)
         
+        // const localStudentList = JSON.parse(localStorage.getItem('localStuentList'))
+        // console.log("本地学生数据读取成功")
+        // console.log(localStudentList)
+
+
         // 判断跳转位置
-        if(nowStudentInfo.role && nowStudentInfo.state == false){
+        if(nowStudentInfo.role == 'student' && nowStudentInfo.state == false){
             studentInfo.value = nowStudentInfo
             router.replace('/student')
-            return studentInfo
         }
-        if(nowStudentInfo.role && nowStudentInfo.state == true){
+        if(nowStudentInfo.role == 'student' && nowStudentInfo.state == true){
             // studentInfo.value = nowStudentInfo
             router.replace('/layout')
         }
-        if(nowTeacherInfo.role){
+        if(nowTeacherInfo.role == 'teacher'){
             teacherInfo.value = nowTeacherInfo
             router,replace('/teacher')
-            return teacherInfo
         }
     }
     
@@ -73,7 +106,9 @@ export const useUserStore = defineStore('user',() => {
         chooseTeacher,
     }
 
-    },{
+    }
+    ,
+    {
         persist: true
     }
 )

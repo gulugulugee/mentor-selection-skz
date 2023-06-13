@@ -11,21 +11,24 @@ var userData = [
         "account":'2020214718',
         "password":'2020214718',
         "role":"student",
-        "state":false
+        "state":false,
+        "teacher":''
     },
     {
         "name":"student2",
         "account":'2020214719',
         "password":'2020214719',
         "role":"student",
-        "state":false
+        "state":false,
+        "teacher":''
     },
     {
         "name":"student3",
         "account":'2020214720',
         "password":'2020214720',
         "role":"student",
-        "state":false
+        "state":false,
+        "teacher":''
     },
     {
         "name":"teacher1",
