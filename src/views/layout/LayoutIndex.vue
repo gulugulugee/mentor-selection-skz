@@ -11,8 +11,9 @@
 </script>
 
 <template>
-    这是{{ userStore.userInfo.name }}的登陆页面
+    <!-- 这是{{ userStore.userInfo.name }}的登陆页面 -->
+    <h1> 登陆后的页面 </h1>
     <p>
-        <button @click="back"></button>
+        <button @click="back">回到登录页</button>
     </p>
 </template>

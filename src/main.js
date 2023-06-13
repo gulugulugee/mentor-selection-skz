@@ -13,6 +13,7 @@ const app = createApp(App)
 const pinia = createPinia()
 pinia.use(piniaPluginPersistedstate)
 
+//   这里要是app.use(pinia)；而不是app.use（create（pinia））否则pinia的持久化管理无法运行
 app.use(pinia)
 app.use(router)
 
