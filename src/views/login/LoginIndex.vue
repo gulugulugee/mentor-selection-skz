@@ -30,10 +30,11 @@ const rules = {
     ]
 }
 
+const flag = ref(false)
 
 const login = () => {
     const { account,password } = form.value
-    userStore.userLogin({ account,password })
+    flag.value = userStore.userLogin({ account,password })
 }
 
 
@@ -43,6 +44,9 @@ const login = () => {
 
 
 <template>
+    <template v-if="flag">
+        <el-alert title="账号或密码错误" type="error" />
+    </template>
     <div class="full_page">
         <div class="title">
         <h1>

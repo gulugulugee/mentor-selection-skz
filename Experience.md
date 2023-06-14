@@ -9,3 +9,10 @@ urlBase设置为mock
 ///////////////////
 git push -u github master
 git push -u gitee "master"
+
+<template v-if="item.now < item.max && userStore.studentInfo.state == false">
+<el-button type="success" @click="choose">Success</el-button>
+</template>
+<template v-else>
+    <el-button type="success" disabled>Success</el-button>
+</template>

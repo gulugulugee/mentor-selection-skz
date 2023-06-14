@@ -11,7 +11,6 @@ const router = createRouter({
     {
       path: '/student',
       component: () => import('@/views/student/StudentIndex.vue'),
-      name: 'studentPage'
     },
     {
       path: '/teacher',
@@ -19,7 +18,7 @@ const router = createRouter({
       name: 'teacherPage'
     },
     {
-      path: '/layout',
+      path: '/show',
       component: () => import('@/views/layout/LayoutIndex.vue')
     }
   ]
