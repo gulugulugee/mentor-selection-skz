@@ -10,6 +10,7 @@ const userStore = useUserStore()
 
 const load = async () => {
     await userStore.getStudentList()
+    await userStore.getTeacherList()
 }
 
 load()
@@ -30,14 +31,14 @@ const rules = {
     ]
 }
 
+
+
 const flag = ref(false)
 
 const login = () => {
     const { account,password } = form.value
     flag.value = userStore.userLogin({ account,password })
 }
-
-
 
 
 </script>

@@ -8,12 +8,12 @@ export const useUserStore = defineStore('user',() => {
     const router = useRouter()
 
     // 当前登录的用户信息
-    const studentInfo = ref({})
-    const teacherInfo = ref({})
+    let studentInfo = ref({})
+    let teacherInfo = ref({})
 
     // 全部的用户信息
-    const studentList = ref([])
-    const teacherList = ref([])
+    let studentList = ref([])
+    let teacherList = ref([])
 
     //我选择的老师的信息
     const myTeacher = ref({})
@@ -60,8 +60,12 @@ export const useUserStore = defineStore('user',() => {
 
         // 选课学生在pinia中的state改为true
         studentList.value.find(item => item.account == studentaccount).state = true
+
         // 选课学生记录选的哪个老师（存在teacher中
         studentList.value.find(item => item.account == studentaccount).teacher = teacherAccount
+
+        // 向被选老师的mystudent中插入学生的学号
+        teacherList.value.find(item => item.account == teacherAccount).myStudent.push(studentaccount)
 
         // 更新pinia中当前学生信息
         studentInfo.value = studentList.value.find(item => item.account == studentaccount)
@@ -104,7 +108,7 @@ export const useUserStore = defineStore('user',() => {
         }
         if(nowTeacherInfo?.role == 'teacher'){
             teacherInfo.value = nowTeacherInfo
-            router,replace('/teacher')
+            router.replace('/teacher')
         }
         
         return false
@@ -113,12 +117,24 @@ export const useUserStore = defineStore('user',() => {
         
     }
 
-    //修改密码
-    const changePassword = ( oldPassword,newPassword ) => {
+    // 修改密码
+    const changeStudentPassword = ( oldPassword,newPassword ) => {
         studentList.value.find(item => item.password == oldPassword).password = newPassword
-
+        
         //更新userinfo
         studentInfo.password = newPassword
+        
+    }
+    const changeTeacherPassword = ( oldPassword,newPassword ) => {
+        teacherList.value.find(item => item.password == oldPassword).password = newPassword
+
+        //更新userinfo
+        teacherInfo.password = newPassword
+    }
+
+    // 获取教师带的学生的信息
+    const getMyStudentInfo = ( studentAccount ) => {
+       return studentList.value.find(item => item.account == studentAccount)
     }
     
     return{
@@ -131,7 +147,9 @@ export const useUserStore = defineStore('user',() => {
         getStudentList,
         userLogin,
         chooseTeacher,
-        changePassword,
+        changeStudentPassword,
+        changeTeacherPassword,
+        getMyStudentInfo
     }
 
     }

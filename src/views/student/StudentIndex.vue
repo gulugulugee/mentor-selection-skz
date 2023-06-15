@@ -9,11 +9,16 @@
     const router = useRouter()
 
     const userStore = useUserStore()
-    const load = async () => {
-        await userStore.getTeacherList()
-    }
 
-    onMounted(() => load())
+
+    // const load = async () => {
+    //     await userStore.getTeacherList()
+    // }
+
+    // onMounted(() => load())
+
+    // 测试能否向list中push数据
+    // userStore.teacherList[0].myStudent.push(1)
 
     const choose = (chooseAccount) => {
         userStore.chooseTeacher(chooseAccount,userStore.studentInfo.account)
@@ -27,8 +32,8 @@
         router.replace({path: '/'})
     }
 
-    const changePassword = () => {
-        userStore.changePassword(userStore.studentInfo.password,newPassword)
+    const changeSPassword = () => {
+        userStore.changeStudentPassword(userStore.studentInfo.password,newPassword.value)
     }
 
 </script>
@@ -134,7 +139,7 @@
                                     title="你确定以此为新密码吗"
                                     :icon="InfoFilled"
                                     icon-color="#626AEF"
-                                    @confirm="changePassword"
+                                    @confirm="changeSPassword"
                                     @cancel="cancelEvent"
                                 >
                                 <template #reference>

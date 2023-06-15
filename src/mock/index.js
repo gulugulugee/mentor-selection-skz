@@ -7,12 +7,100 @@ import Mock from 'mockjs'
 //用户数据
 var userData = [
     {
+        "name":"DefaultStudent1",
+        "account":'11111111',
+        "password":'11111111',
+        "role":"student",
+        "state":false,
+        "teacher":'',
+        "telephone":'default',
+        "address":'default',
+        "score":'80',
+        "school":'Linda'
+    },
+    {
+        "name":"DefaultStudent2",
+        "account":'22222222',
+        "password":'11111111',
+        "role":"student",
+        "state":false,
+        "teacher":'',
+        "telephone":'default',
+        "address":'default',
+        "score":'80',
+        "school":'Linda'
+    },
+    {
+        "name":"DefaultStudent3",
+        "account":'33333333',
+        "password":'11111111',
+        "role":"student",
+        "state":false,
+        "teacher":'',
+        "telephone":'default',
+        "address":'default',
+        "score":'80',
+        "school":'Linda'
+    },
+    {
+        "name":"DefaultStudent4",
+        "account":'44444444',
+        "password":'11111111',
+        "role":"student",
+        "state":false,
+        "teacher":'',
+        "telephone":'default',
+        "address":'default',
+        "score":'80',
+        "school":'Linda'
+    },
+    {
+        "name":"DefaultStudent5",
+        "account":'55555555',
+        "password":'11111111',
+        "role":"student",
+        "state":false,
+        "teacher":'',
+        "telephone":'default',
+        "address":'default',
+        "score":'80',
+        "school":'Linda'
+    },
+    {
+        "name":"DefaultStudent6",
+        "account":'66666666',
+        "password":'11111111',
+        "role":"student",
+        "state":false,
+        "teacher":'',
+        "telephone":'default',
+        "address":'default',
+        "score":'80',
+        "school":'Linda'
+    },
+    {
+        "name":"DefaultStudent7",
+        "account":'77777777',
+        "password":'11111111',
+        "role":"student",
+        "state":false,
+        "teacher":'',
+        "telephone":'default',
+        "address":'default',
+        "score":'80',
+        "school":'Linda'
+    },
+    {
         "name":"skz",
         "account":'2020214718',
         "password":'2020214718',
         "role":"student",
         "state":false,
-        "teacher":''
+        "teacher":'',
+        "telephone":'15241395996',
+        "address":'YingKou',
+        "score":'80',
+        "school":'Linda'
     },
     {
         "name":"student2",
@@ -20,7 +108,11 @@ var userData = [
         "password":'2020214719',
         "role":"student",
         "state":false,
-        "teacher":''
+        "teacher":'',
+        "telephone":'152xxxxxxxx',
+        "address":'QingDao',
+        "score":'82',
+        "school":'Linda'
     },
     {
         "name":"student3",
@@ -28,7 +120,11 @@ var userData = [
         "password":'2020214720',
         "role":"student",
         "state":false,
-        "teacher":''
+        "teacher":'',
+        "telephone":'152xxxxxxxx',
+        "address":'DaLian',
+        "score":'90',
+        "school":'Linda'
     },
     {
         "name":"teacher1",
@@ -39,7 +135,16 @@ var userData = [
         "role":"teacher",
         "telephone":"15241395996",
         "address":"No.1188, Wuzhong Avenue, Wuzhong District, Suzhou, Jiangsu Province",
-        "place":"linda"
+        "place":"linda",
+        "myStudent":[
+            '11111111',
+            '22222222',
+            '33333333',
+            '44444444',
+            '55555555',
+            '66666666',
+            '77777777'
+        ]
     },
     {
         "name":"teacher2",
