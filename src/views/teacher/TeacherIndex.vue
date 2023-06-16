@@ -36,7 +36,13 @@
             </h1>
         </el-header>
         <el-container>
-          <el-aside width="200px">Aside</el-aside>
+          <el-aside width="200px">
+            <ul>
+                <li>我的学生</li>
+                <li>更改密码</li>
+                <li>重新登陆</li>
+            </ul>
+          </el-aside>
           <el-main>
             <el-descriptions
                     title="全部教师"

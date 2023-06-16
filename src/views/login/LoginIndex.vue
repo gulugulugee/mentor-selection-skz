@@ -24,7 +24,7 @@ const form = ref({
 // 2.规则对象
 const rules = {
     account:[
-        { required:true ,message:'用户名不能为空', trigger: 'blur' }
+        { required:true ,message:'账号不能为空', trigger: 'blur' }
     ],
     password:[
         { required:true ,message:'密码不能为空', trigger: 'blur' }
@@ -48,13 +48,8 @@ const login = () => {
     <template v-if="flag">
         <el-alert title="账号或密码错误" type="error" />
     </template>
-    <div class="full_page">
-        <div class="title">
-        <h1>
-            毕设导师选择系统
-        </h1>
-        </div>
-        <!-- <div class="login-box">
+
+     <!-- <div class="login-box">
             <div>登录????</div>
             <div class="account">
                 账号：<input type="text" v-model="form.account">
@@ -66,7 +61,13 @@ const login = () => {
                 <button @click="login" RouterLink="">登录!!!!</button>
             </div>
         </div> -->
-        
+
+    <!-- <div class="full_page">
+        <div class="title">
+        <h1>
+            毕设导师选择系统
+        </h1>
+        </div>
         <div class="input_box">
             <div class="input_text">
                 <el-form :model="form" :rules="rules">
@@ -91,12 +92,54 @@ const login = () => {
                 <el-button @click="login" type="success">登录</el-button>
             </div>
         </div>
+    </div> -->
+
+
+    
+    <div class="common-layout">
+        <el-container>
+        <el-header>
+            <h1>
+                欢迎使用毕设导师选择系统，请先登录
+            </h1>
+        </el-header>
+        <el-container>
+            <!-- <el-aside width="200px">Aside</el-aside> -->
+            <el-main>
+                <div class="input-form">
+                    <el-form 
+                    :inline="true" 
+                    :model="formInline" 
+                    class="demo-form-inline"
+                    :rules="rules"
+                    >
+
+                    <el-form-item label="账号：" prop="account">
+                    <el-input v-model="form.account" placeholder="请输入账号" />
+                    </el-form-item>
+                    <br>
+                    <el-form-item label="密码：" prop="password">
+                    <el-input v-model="form.password" placeholder="请输入密码" />
+                    </el-form-item>
+                    <br>
+                    <el-form-item>
+                    <el-button type="primary" @click="login">登录</el-button>
+                    </el-form-item>
+
+                    </el-form>
+                </div>
+            </el-main>
+        </el-container>
+        </el-container>
     </div>
+    
+    
+    
 </template>
 
 <style>
 
-    .full_page{
+    /* .full_page{
         position : absolute;
         width : 100%;
 	    height : 100%;
@@ -133,7 +176,17 @@ const login = () => {
     .input_button{
         margin-top: 50px;
         padding-left: 500px;
-    }
+    } */
    
+    .input-form{
+        margin-top: 3%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border: 2px solid rgb(90, 51, 151);
+        border-radius: 20px;
+        width: 500px;
+        height: 300px;
+    }
 
 </style>

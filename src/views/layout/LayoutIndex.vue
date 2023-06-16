@@ -46,7 +46,11 @@
         </el-header>
         <el-container>
             <el-aside width="300px">
-
+                <ul>
+                    <li>我的导师</li>
+                    <li>修改密码</li>
+                    <li>重新登陆</li>
+                </ul>
             </el-aside>
             <el-main>
                 <el-descriptions
